@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_accounts
+    columns:
+      - name: account_id
+        tests: [not_null, unique]
+      - name: signup_date
+        tests: [not_null]
+
+  - name: stg_subscriptions
+    columns:
+      - name: subscription_id
+        tests: [not_null, unique]
+      - name: account_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_accounts')
+              field: account_id
+      - name: billing_frequency
+        tests:
+          - accepted_values:
+              values: ["monthly", "annual"]
+              quote: true
+

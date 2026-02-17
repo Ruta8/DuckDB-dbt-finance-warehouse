@@ -1,0 +1,109 @@
+# -----------------------
+# dbt
+# -----------------------
+target/
+dbt_packages/
+logs/
+log/
+manifest.json
+run_results.json
+
+# dbt user config (local-only)
+.user.yml
+**/.user.yml
+
+# -----------------------
+# DuckDB / local data
+# -----------------------
+*.duckdb
+*.duckdb-wal
+*.duckdb-shm
+*.db
+db/*.duckdb
+db/*.duckdb-wal
+db/*.duckdb-shm
+
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.*
+
+# -----------------------
+# Jupyter
+# -----------------------
+.ipynb_checkpoints/
+
+# -----------------------
+# OS / Editor
+# -----------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp# -----------------------
+# dbt
+# -----------------------
+target/
+dbt_packages/
+logs/
+log/
+manifest.json
+run_results.json
+
+# dbt user config (local-only)
+.user.yml
+**/.user.yml
+
+
+# -----------------------
+# DuckDB / local data
+# -----------------------
+*.duckdb
+*.duckdb-wal
+*.duckdb-shm
+*.db
+db/*.duckdb
+db/*.duckdb-wal
+db/*.duckdb-shm
+
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.*
+
+# -----------------------
+# Jupyter
+# -----------------------
+.ipynb_checkpoints/
+
+# -----------------------
+# OS / Editor
+# -----------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+*.swo

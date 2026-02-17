@@ -1,0 +1,7 @@
+oxylabs_project:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "db/warehouse.duckdb"
+      schema: main

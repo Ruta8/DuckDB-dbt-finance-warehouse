@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: mart_mrr_waterfall_month
+    description: "CFO-facing monthly MRR waterfall mart. Grain: month_start_date (one row per month). Built from fct_account_month."
+    columns:
+      - name: month_start_date
+        description: "Month key (first day of month)."
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              to: ref('dim_date')
+              field: date_day
+
+      - name: begin_mrr
+        tests: [not_null]
+      - name: end_mrr
+        tests: [not_null]
+      - name: net_mrr_change
+        tests: [not_null]
+
+      - name: new_mrr
+        tests: [not_null]
+      - name: reactivation_mrr
+        tests: [not_null]
+      - name: expansion_mrr
+        tests: [not_null]
+      - name: contraction_mrr
+        tests: [not_null]
+      - name: churn_mrr
+        tests: [not_null]
+
+      - name: active_accounts
+        tests: [not_null]
+      - name: churned_accounts
+        tests: [not_null]
+      - name: new_accounts
+        tests: [not_null]
+      - name: reactivated_accounts
+        tests: [not_null]
+
+  - name: mart_subscription_month_enriched
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [subscription_id, month_start_date]
+    columns:
+      - name: subscription_key
+        tests: [not_null]
+      - name: account_key
+        tests: [not_null]
+      - name: month_start_date
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_day

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: accounts
+      - name: subscriptions
+      - name: feature_usage
+      - name: support_tickets
+      - name: churn_events

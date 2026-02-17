@@ -1,0 +1,42 @@
+name: oxylabs_project
+version: "1.0"
+config-version: 2
+
+profile: oxylabs_project
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+analysis-paths: ["analysis"]
+
+models:
+  oxylabs_project:
+    staging:
+      +schema: stg
+    intermediate:
+      +schema: int
+    reporting:
+      +schema: mart
+      marts:
+        +schema: mart
+      dimensions:
+        +schema: mart
+      facts:
+        +schema: mart
+
+snapshots:
+  oxylabs_project:
+    +schema: snapshots
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+vars:
+  dim_date_start_date: "2023-01-01"
+  dim_date_end_date: "2025-12-31"
+  reprocess_months: 2

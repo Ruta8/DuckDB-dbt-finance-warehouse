@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: fct_subscription_month
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [subscription_id, month_start_date]
+    columns:
+      - name: subscription_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_subscription')
+              field: subscription_key
+      - name: account_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_key
+      - name: month_start_date
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_day
+
+  - name: fct_account_month
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [account_id, month_start_date]
+    columns:
+      - name: account_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_key
+      - name: month_start_date
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_day

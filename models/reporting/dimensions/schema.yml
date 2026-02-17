@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: dim_account
+    columns:
+      - name: account_key
+        tests: [not_null, unique]
+      - name: account_id
+        tests: [not_null]
+      - name: valid_from
+        tests: [not_null]
+
+  - name: dim_subscription
+    columns:
+      - name: subscription_key
+        tests: [not_null, unique]
+      - name: subscription_id
+        tests: [not_null]
+      - name: account_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_account')
+              field: account_key
+      - name: valid_from
+        tests: [not_null]
+
+  - name: dim_feature
+    columns:
+      - name: feature_key
+        tests: [not_null, unique]
+      - name: feature_name
+        tests: [not_null, unique]
