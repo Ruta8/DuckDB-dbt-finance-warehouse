@@ -142,3 +142,27 @@ python scripts/load_csvs_to_duckdb.py --mode replace
 # or
 python scripts/load_csvs_to_duckdb.py --mode append
 ```
+
+## Further Improvements - Scaling, Testing, Monitoring
+
+### Hashes
+Store MD5(...) (hash) directly as a BYTES column (Bigquery allows this).
+
+No need for hashin in general if the source can give:
+1) A stable unique ID (best)
+2) A reliable “last updated” timestamp or CDC metadata (for history)
+3) Natural key + effective dates (for slowly changing dimensions)
+4) A guaranteed unique composite key
+
+### Testing
+
+***Questions I want to answer when testing***
+
+1. Does my model produce expected outputs? (hashing behavior, business logic calculations, incremental logic)(dbt unit tests, dbt utils).
+2. Ongoing monitoring/observability with 🌈interface🌈 (freshness, anomalies, test history, alerting). (Elementary)
+
+### Materialization
+
+1. intermediate models
+ - explicitly choose columns from/after staging
+ - make the int_*_current model an incremental table that keeps one latest row per subscription_id. So for each subscription aricing with new staging batch we look at it if we have it in the intermediate already and if not we add it, and if we have the subscription in intermediate we take the latest row.
