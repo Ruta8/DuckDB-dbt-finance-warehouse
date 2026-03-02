@@ -166,3 +166,10 @@ No need for hashin in general if the source can give:
 1. intermediate models
  - explicitly choose columns from/after staging
  - make the int_*_current model an incremental table that keeps one latest row per subscription_id. So for each subscription aricing with new staging batch we look at it if we have it in the intermediate already and if not we add it, and if we have the subscription in intermediate we take the latest row.
+
+2. snapshots
+  - invalidate_hard_deletes=true, not really needed, optional, could save some compute.
+
+### Running jobs
+
+No need to run daily, if data comes only monthly. Always check which business.
